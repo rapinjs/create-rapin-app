@@ -1,0 +1,37 @@
+{
+    "name": "<%= name %>",
+    "description": "<%= description %>",
+    "version": "0.1.0",
+    "author": "<%= author %>",
+    "private": true,
+    "scripts": {
+        "start": "ts-node server/index.ts start",
+        "dev": "nodemon --exec ts-node server/index.ts",
+        "sync": "ts-node ./node_modules/typeorm/cli.js",
+        "generate-tsdoc": "typedoc --out docs/ src/"
+    },
+    "dependencies": {
+        <%_ if (inky) { _%>
+        "@rapin/inky": "^0.0.2",
+        <%_ } _%>
+        <%_ if (typeorm) { _%>
+        "@rapin/typeorm": "^1.0.4",
+        <%_ if(dbType === 'mongodb') { _%>
+        "mongodb": "^3.2.3",
+        <% } %>
+        <%_ if (auth) { _%>
+        "@rapin/typeorm-auth": "^1.0.2",
+        <%_ } _%>
+        <%_ } _%>
+        <%_ if (typeorm) { _%>
+        "typeorm": "^0.2.18",
+        <%_ } _%>
+        "rapin": "^0.1.16",
+        "ts-node": "^8.3.0"
+    },
+    "devDependencies": {
+        "@types/node": "^12.6.8",
+        "nodemon": "^1.19.1",
+        "typedoc": "^0.14.2"
+    }
+}
