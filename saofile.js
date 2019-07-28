@@ -40,13 +40,6 @@ module.exports = {
       default: "postcss"
     },
     {
-      name: "inky",
-      message: "Install inky plugin",
-      choices: ["true", "false"],
-      type: "list",
-      default: "false"
-    },
-    {
       name: "typeorm",
       message: "Install typeorm plugin",
       choices: ["true", "false"],
@@ -137,6 +130,14 @@ module.exports = {
       message: "Mail password",
       when: answers => answers.mail === "true"
     },
+    {
+        name: "inky",
+        message: "Install inky plugin",
+        choices: ["true", "false"],
+        type: "list",
+        default: "false",
+        when: answers => answers.mail === "true"
+      },
     {
       name: "pm",
       message: "Choose a package manager",
