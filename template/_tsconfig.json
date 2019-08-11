@@ -10,7 +10,7 @@
     "outDir": "./bin",
     "declaration": true,
     "baseUrl": ".",
-    "types": ["node", <%_ if (typeorm) { _%> "@rapin/typeorm", <%_ } _%> <%_ if(typeorm && auth) { _%> "@rapin/typeorm-auth",<%_ } _%>, <%_ if (inky) { _%> "@rapin/inky" <%_ } _%>],
+    "types": ["node", <%_ if (typeorm) { _%> "@rapin/typeorm", <%_ } _%> <%_ if(typeorm && auth) { _%> "@rapin/typeorm-auth",<%_ } _%> <%_ if (inky) { _%> "@rapin/inky" <%_ } _%>],
     "paths": {
       "*": ["*", "src/*"]
     }
