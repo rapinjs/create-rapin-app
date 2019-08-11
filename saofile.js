@@ -210,7 +210,8 @@ module.exports = {
       type: "move",
       patterns: {
         gitignore: ".gitignore",
-        "_package.json": "package.json"
+        "_package.json": "package.json",
+        "_tsconfig.json": "tsconfig.json"
       }
     });
 

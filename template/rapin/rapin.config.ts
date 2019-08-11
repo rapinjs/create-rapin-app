@@ -6,10 +6,10 @@ module.exports = {
     type: '<%= dbType%>',
     <%_ if (dbType === 'mongodb') { _%>
     useNewUrlParser: true,
-    url: <%= dbUrl %>,
+    url: '<%= dbUrl %>'',
     ssl: true,
-    authSource: <%= dbAuthSource %>,
-    replicaSet: <%= dbReplicaSet %>,
+    authSource: '<%= dbAuthSource %>',
+    replicaSet: '<%= dbReplicaSet %>',
     <%_ } _%>
     <%_ if (dbType === 'mysql') { _%>
     database: '<%= dbName %>',
@@ -53,5 +53,5 @@ module.exports = {
   },
   <%_ } _%>
   //List plugins
-  plugins: ['plugins/testPlugin.ts', <%_ if (typeorm) { _%> '@rapin/typeorm', <%_ } _%> <%_ if(typeorm && auth) { _%> '@rapin/typeorm-auth',<%_ } _%>]
+  plugins: ['plugins/testPlugin.ts', <%_ if (typeorm) { _%> '@rapin/typeorm', <%_ } _%> <%_ if(typeorm && auth) { _%> '@rapin/typeorm-auth',<%_ } _%>, <%_ if (inky) { _%> "@rapin/inky" <%_ } _%>]
 }
