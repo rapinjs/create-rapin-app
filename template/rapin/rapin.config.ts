@@ -1,17 +1,13 @@
 const path = require('path')
 module.exports = {
-  <%_ if (typeorm) {_%>
+  <%_ if (db) {_%>
   //Database access
   db: {
-    type: '<%= dbType%>',
     <%_ if (dbType === 'mongodb') { _%>
-    useNewUrlParser: true,
-    url: '<%= dbUrl %>'',
-    ssl: true,
-    authSource: '<%= dbAuthSource %>',
-    replicaSet: '<%= dbReplicaSet %>',
+    url: '<%= dbUrl %>'
     <%_ } _%>
-    <%_ if (dbType === 'mysql') { _%>
+    <%_ if (dbType === 'sql') { _%>
+    type: 'my<%= dbType%>',
     database: '<%= dbName %>',
     hostname: '<%= dbHostname %>',
     password: '<%= dbPassword %>',
@@ -53,5 +49,5 @@ module.exports = {
   },
   <%_ } _%>
   //List plugins
-  plugins: ['plugins/testPlugin.ts', <%_ if (typeorm) { _%> '@rapin/typeorm', <%_ } _%> <%_ if(typeorm && auth) { _%> '@rapin/typeorm-auth',<%_ } _%> <%_ if (inky) { _%> "@rapin/inky" <%_ } _%>]
+  plugins: ['plugins/testPlugin.ts', <%_ if (db && dbType === 'sql') { _%> '@rapin/typeorm', <%_ } _%> <%_ if (db && dbType === 'mongodb') { _%> '@rapin/mongoose', <%_ } _%> <%_ if(db && dbType === 'sql' && auth) { _%> '@rapin/typeorm-auth',<%_ } _%> <%_ if (inky) { _%> "@rapin/inky" <%_ } _%>]
 }

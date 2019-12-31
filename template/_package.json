@@ -14,19 +14,18 @@
         <%_ if (inky) { _%>
         "@rapin/inky": "^0.0.2",
         <%_ } _%>
-        <%_ if (typeorm) { _%>
+        <%_ if (db && dbType === 'sql') { _%>
         "@rapin/typeorm": "^1.0.4",
-        <%_ if(dbType === 'mongodb') { _%>
-        "mongodb": "^3.2.3",
-        <% } %>
-        <%_ if (auth) { _%>
-        "@rapin/typeorm-auth": "^1.0.2",
-        <%_ } _%>
-        <%_ } _%>
-        <%_ if (typeorm) { _%>
         "typeorm": "^0.2.18",
+          <%_ if (auth) { _%>
+        "@rapin/typeorm-auth": "^1.0.2",
+          <%_ } _%>
         <%_ } _%>
-        "rapin": "^0.1.16",
+        <%_ if(db && dbType === 'mongodb') { _%>
+        "@rapin/mongoose": "^0.0.1",
+        "@types/mongoose": "^5.5.32",
+        <%_ } _%>
+        "rapin": "^0.1.33",
         "ts-node": "^8.3.0"
     },
     "devDependencies": {

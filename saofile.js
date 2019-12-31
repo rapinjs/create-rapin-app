@@ -35,24 +35,24 @@ module.exports = {
     {
       name: "stylesheet",
       message: "Choose a stylesheet engine",
-      choices: ["postcss"],
+      choices: ["scss", "postcss"],
       type: "list",
-      default: "postcss"
+      default: "scss"
     },
     {
-      name: "typeorm",
-      message: "Install typeorm plugin",
+      name: "db",
+      message: "Install db plugin",
       choices: ["true", "false"],
       type: "list",
       default: "false"
     },
     {
       name: "dbType",
-      message: "Install auth plugin",
-      choices: ["mysql", "mongodb"],
+      message: "Choose type database",
+      choices: ["sql", "mongodb"],
       type: "list",
       default: "false",
-      when: answers => answers.typeorm === "true"
+      when: answers => answers.db === "true"
     },
     {
       name: "dbUrl",
@@ -60,42 +60,32 @@ module.exports = {
       when: answers => answers.dbType === "mongodb"
     },
     {
-      name: "dbAuthSource",
-      message: "Database Auth Source",
-      when: answers => answers.dbType === "mongodb"
-    },
-    {
-      name: "dbReplicaSet",
-      message: "Database Replica Set",
-      when: answers => answers.dbType === "mongodb"
-    },
-    {
       name: "dbName",
       message: "Database name",
-      when: answers => answers.dbType === "mysql"
+      when: answers => answers.dbType === "sql"
     },
     {
       name: "dbHostname",
       message: "Database hostname",
       default: "locahost",
-      when: answers => answers.dbType === "mysql"
+      when: answers => answers.dbType === "sql"
     },
     {
       name: "dbPort",
       message: "Database port",
       default: "3306",
-      when: answers => answers.dbType === "mysql"
+      when: answers => answers.dbType === "sql"
     },
     {
       name: "dbUsername",
       message: "Database username",
       default: "root",
-      when: answers => answers.dbType === "mysql"
+      when: answers => answers.dbType === "sql"
     },
     {
       name: "dbPassword",
       message: "Database password",
-      when: answers => answers.dbType === "mysql"
+      when: answers => answers.dbType === "sql"
     },
     {
       name: "auth",
@@ -103,7 +93,7 @@ module.exports = {
       choices: ["true", "false"],
       type: "list",
       default: "false",
-      when: answers => answers.typeorm === "true"
+      when: answers => answers.db === "true" && answers.dbType == "sql"
     },
     {
       name: "mail",
@@ -187,7 +177,7 @@ module.exports = {
         });
       }
 
-    if (this.answers.typeorm == "true") {
+    if (this.answers.db == "true" && this.answers.dbType == 'sql') {
       actions.push({
         type: "add",
         files: "**",
